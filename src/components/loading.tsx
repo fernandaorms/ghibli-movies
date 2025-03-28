@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 
 export function Loading() {
-
     return (
         <div className='absolute top-0 left-0 w-screen h-screen bg-background flex flex-col items-center justify-center gap-20 py-20'>
             <div className='text-lg text-center uppercase flex gap-1.5'>
