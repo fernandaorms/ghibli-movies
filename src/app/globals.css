@@ -1,27 +1,28 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
+    --foreground-light: rgba(23, 23, 23, 0.05);
+}
+
+[data-theme='dark'] {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --foreground-light: rgba(237, 237, 237, 0.15);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-rubik: var(--font-rubik);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-foreground-light: var(--foreground-light);
+    --font-rubik: var(--font-rubik);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-rubik);
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-rubik);
 }
 
 @layer utilities {
