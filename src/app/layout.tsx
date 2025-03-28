@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
+
 import './globals.css';
-import { ThemeProvider } from 'next-themes'
 
 const rubik = Rubik({
     variable: '--font-rubik',
@@ -19,7 +20,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en' suppressHydrationWarning>
+        <html lang='en' className='scroll-smooth' suppressHydrationWarning>
             <body className={`${rubik.variable} antialiased`}>
                 <ThemeProvider>{children}</ThemeProvider>
             </body>

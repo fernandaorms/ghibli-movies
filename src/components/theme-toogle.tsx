@@ -11,6 +11,7 @@ export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
 
     if (!theme) return <Loading />
+
     return (
         <>
             <motion.div
