@@ -4,22 +4,33 @@ import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Logo } from '@/components/logo';
 import { usePathname } from 'next/navigation';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useMotionValueEvent, useScroll } from 'motion/react';
+import { useState } from 'react';
 
 export function Header() {
     const pathname = usePathname();
+    const [scrolled, setScrolled] = useState(false);
     const { scrollY } = useScroll();
 
-    const color = useTransform(scrollY, [0, 100], ['var(--white)', 'var(--foreground)']);
-    const backgroundColor = useTransform(scrollY, [0, 100], ['transparent', 'var(--background)']);
-    const height = useTransform(scrollY, [0, 100], [128, 80]);
-    // const boxShadow = useTransform(scrollY, [0, 100], ['none', '0 0 12px var(--foreground-light)']);
+    useMotionValueEvent(scrollY, 'change', (latest) => {
+        setScrolled(latest > 100);
+    });
 
     return (
         <>
             <motion.header
                 className='z-50 fixed w-full top-0 py-2 xl:py-4'
-                style={{ color, backgroundColor, height }}
+                initial={{
+                    color: 'var(--white)',
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
+                    height: 128,
+                }}
+                animate={{
+                    color: scrolled ? 'var(--foreground)' : 'var(--white)',
+                    backgroundColor: scrolled ? 'var(--background)' : 'rgba(0, 0, 0, 0)',
+                    height: scrolled ? 80 : 128,
+                }}
+                transition={{ duration: .3, ease: 'easeInOut' }}
             >
                 <div className='h-full w-full wrapper flex justify-between items-center'>
                     <Logo />
