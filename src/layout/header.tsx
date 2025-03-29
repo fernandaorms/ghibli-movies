@@ -41,7 +41,7 @@ export function Header() {
         e.preventDefault();
 
         setSearchBarValue('');
-        router.push(`/movies?search=${searchBarValue}`);
+        router.push(`/movies?search=${searchBarValue.trim()}`);
     }
 
     const handleSearchBarChange = (e: React.FormEvent<HTMLInputElement>) => {
