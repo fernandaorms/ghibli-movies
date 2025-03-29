@@ -11,12 +11,17 @@ import { MenuToogle } from '@/components/menu-toogle';
 import { SearchToogle } from '@/components/search-toogle';
 import { HeaderNav } from '@/components/header-nav';
 import { HeaderNavMobile } from '@/components/header-nav-mobile';
+import { SearchBar } from '@/components/search-bar';
+import { useRouter } from 'next/navigation'
 
 export function Header() {
+    const router = useRouter();
     const pathname = usePathname();
     const { scrollY } = useScroll();
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchBarValue, setSearchBarValue] = useState('');
 
     useMotionValueEvent(scrollY, 'change', (latest) => {
         setScrolled(latest > 100);
@@ -24,12 +29,23 @@ export function Header() {
 
     const toggleSearch = () => {
         if (isMenuOpen) setIsMenuOpen(false);
-        console.log('Search toggle :)')
+        setIsSearchOpen(!isSearchOpen);
     }
 
     const toggleMenuOpen = () => {
+        if (isSearchOpen) setIsSearchOpen(false);
         setIsMenuOpen(!isMenuOpen);
-        console.log(isMenuOpen);
+    }
+
+    const searchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        setSearchBarValue('');
+        router.push(`/movies?search=${searchBarValue}`);
+    }
+
+    const handleSearchBarChange = (e: React.FormEvent<HTMLInputElement>) => {
+        setSearchBarValue(e.currentTarget.value);
     }
 
     return (
@@ -62,6 +78,8 @@ export function Header() {
                             <MenuToogle isMenuOpen={isMenuOpen} onClick={toggleMenuOpen} />
                         </div>
                     </div>
+
+                    <SearchBar onChange={handleSearchBarChange} inputValue={searchBarValue} scrolled={scrolled} isSearchOpen={isSearchOpen} onSubmit={searchSubmit} />
 
                     <HeaderNavMobile pathname={pathname} isMenuOpen={isMenuOpen} onClick={toggleMenuOpen} />
                 </div>
