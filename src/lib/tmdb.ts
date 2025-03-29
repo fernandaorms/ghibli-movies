@@ -3,13 +3,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const COMPANY_ID = process.env.NEXT_PUBLIC_COMPANY_ID;
 const IMG_BASE_URL = process.env.NEXT_PUBLIC_IMG_BASE_URL;
 
-async function fetchFromTMDB(endpoins: string, query?: string[]) {
-    let url = `${BASE_URL}/${endpoins}?api_key=${API_KEY}`;
+async function fetchFromTMDB(endpoints: string, query?: string[]) {
+    let url = `${BASE_URL}/${endpoints}?api_key=${API_KEY}`;
     query?.forEach((value) => url += `&${value}`);
 
     const res = await fetch(url);
 
-    if (!res.ok) throw new Error(`Error fetching ${endpoins}`);
+    if (!res.ok) throw new Error(`Error fetching ${endpoints}`);
     return res.json();
 }
 
