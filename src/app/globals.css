@@ -6,7 +6,9 @@
     --foreground-light: rgba(23, 23, 23, 0.075);
 
     --neutral-light: #ededed;
+    --primary: #1990C6;
     --primary-md: #38527B;
+    --primary-sm: #586e8f;
     --white: #FFF;
 }
 
@@ -22,7 +24,9 @@
     --color-foreground: var(--foreground);
     --color-foreground-light: var(--foreground-light);
     --color-neutral-light: var(--neutral-light);
+    --color-primary: var(--primary);
     --color-primary-md: var(--primary-md);
+    --color-primary-sm: var(--primary-sm);
     --color-white: var(--white);
     --font-rubik: var(--font-rubik);
 }
