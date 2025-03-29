@@ -32,7 +32,7 @@ export default function Movies() {
     }, [search]);
 
     // useEffect(() => {
-    //     if (search && movies) setNewMovies(movies.results.filter((movie: any) => searchMovies(movie, search.toLowerCase())));
+    //     console.log(movies.lenght);
     // }, [search, movies])
 
     if (loading) return <Loading />;
@@ -57,12 +57,12 @@ export default function Movies() {
 
             <div className='wrapper'>
                 {search && (
-                    <p>Results for: {search}</p>
+                    <p>{movies.length} Results for: "{search}"</p>
                 )}
 
-                {movies && !error ? (
+                {(movies.length > 0) && !error ? (
                     <>
-                        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                        <div className='grid md:grid-cols-3 lg:grid-cols-3 gap-4'>
                             {movies.map((movie: any) => (
                                 <div key={movie.id} className='p-4 border rounded-lg'>
                                     <div className='backdrop'>
@@ -104,13 +104,9 @@ export default function Movies() {
                                 </div>
                             ))}
                         </div>
-
-                        <pre>
-                            {JSON.stringify(movies[0])}
-                        </pre>
                     </>
                 ) : (
-                    <div>
+                    <div className='text-foreground text-2xl'>
                         <p>Sorry, no movies found :(</p>
                     </div>
                 )}
