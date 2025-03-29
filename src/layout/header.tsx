@@ -37,15 +37,19 @@ export function Header() {
         setIsMenuOpen(!isMenuOpen);
     }
 
+    const handleSearchBarChange = (e: React.FormEvent<HTMLInputElement>) => {
+        setSearchBarValue(e.currentTarget.value);
+    }
+
+    const clearSearchBar = () => {
+        setSearchBarValue('');
+    }
+
     const searchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        setSearchBarValue('');
+        clearSearchBar()
         router.push(`/movies?search=${searchBarValue.trim()}`);
-    }
-
-    const handleSearchBarChange = (e: React.FormEvent<HTMLInputElement>) => {
-        setSearchBarValue(e.currentTarget.value);
     }
 
     return (
@@ -79,7 +83,7 @@ export function Header() {
                         </div>
                     </div>
 
-                    <SearchBar onChange={handleSearchBarChange} inputValue={searchBarValue} scrolled={scrolled} isSearchOpen={isSearchOpen} onSubmit={searchSubmit} />
+                    <SearchBar onChange={handleSearchBarChange} inputValue={searchBarValue} scrolled={scrolled} isSearchOpen={isSearchOpen} onSubmit={searchSubmit} clearSearchBar={clearSearchBar} />
 
                     <HeaderNavMobile pathname={pathname} isMenuOpen={isMenuOpen} onClick={toggleMenuOpen} />
                 </div>
