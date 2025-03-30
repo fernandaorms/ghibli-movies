@@ -12,6 +12,8 @@
     --primary-md: #38527B;
     --primary-sm: #586e8f;
     --white: #FFF;
+    --white-75: rgba(255, 255, 255, 0.75);
+    --semi-transparent: rgba(237, 237, 237, 0.175);
 }
 
 [data-theme='dark'] {
@@ -21,7 +23,6 @@
     --foreground-light: rgba(237, 237, 237, 0.175);
     --content: rgba(255, 255, 255, 0.75);
     --border: #52525B;
-
 }
 
 @theme inline {
@@ -36,6 +37,9 @@
     --color-primary-md: var(--primary-md);
     --color-primary-sm: var(--primary-sm);
     --color-white: var(--white);
+    --color-white-75: var(--white-75);
+    --color-semi-transparent: var(--semi-transparent);
+
     --font-rubik: var(--font-rubik);
 }
 
@@ -51,6 +55,7 @@ body {
         @apply container mx-auto px-5;
     }
 
+
     .background-image {
         background: center/cover;
 
@@ -62,6 +67,10 @@ body {
             background: linear-gradient(to bottom, rgba(31, 31, 31, 0.85), rgba(31, 31, 31, 0.25), rgba(31, 31, 31, 1));
 
             @apply absolute top-0 left-0 h-full w-full;
+        }
+
+        &.backdrop::after{
+            background: rgba(31, 31, 31, 0.8);
         }
     }
 
