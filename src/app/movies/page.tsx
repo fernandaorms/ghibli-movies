@@ -3,20 +3,21 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
-import { getAllMovies, getBackdrop, getPoster } from '@/lib/tmdb';
+import { getAllMovies, getBackdrop } from '@/lib/tmdb';
+import { AnimatePresence, motion } from 'motion/react';
+import { FaAnglesRight } from 'react-icons/fa6';
 
 export default function Movies() {
     const searchParams = useSearchParams();
     const search = searchParams.get('search') || null;
-
-    const [newMovies, setNewMovies] = useState<any>(null);
     const [movies, setMovies] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [visibleCards, SetVisibleCards] = useState(6);
 
     useEffect(() => {
         getAllMovies()
@@ -31,12 +32,11 @@ export default function Movies() {
             });
     }, [search]);
 
-    // useEffect(() => {
-    //     console.log(movies.lenght);
-    // }, [search, movies])
+    const handleLoadMore = () => {
+        SetVisibleCards((prev) => prev + 6);
+    }
 
     if (loading) return <Loading />;
-    // if (error) return notFound();
 
     return (
         <div>
@@ -55,62 +55,91 @@ export default function Movies() {
                 </section>
             </main>
 
-            <div className='wrapper'>
-                {search && (
-                    <p>{movies.length} Results for: "{search}"</p>
-                )}
-
-                {(movies.length > 0) && !error ? (
-                    <>
-                        <div className='grid md:grid-cols-3 lg:grid-cols-3 gap-4'>
-                            {movies.map((movie: any) => (
-                                <div key={movie.id} className='p-4 border rounded-lg'>
-                                    <div className='backdrop'>
-                                        <p>Backdrop</p>
-                                        <Image
-                                            className='dark:invert'
-                                            src={`${getBackdrop(movie.backdrop_path)}`}
-                                            alt='Next.js logo'
-                                            width={180}
-                                            height={38}
-                                            priority
-                                        />
-                                    </div>
-
-                                    <div className='poster'>
-                                        <p>Poster</p>
-                                        <Image
-                                            className='dark:invert'
-                                            src={`${getPoster(movie.poster_path)}`}
-                                            alt='Next.js logo'
-                                            width={180}
-                                            height={38}
-                                            priority
-                                        />
-                                    </div>
-
-                                    <div className='info'>
-                                        <p>Original Language: {movie.original_language}</p>
-                                        <p>Original Title: {movie.original_title}</p>
-                                        <p>Popularity: {movie.popularity}</p>
-                                        <p>Release Date: {movie.release_date}</p>
-                                        <p>Vote Avarage: {movie.vote_average}</p>
-                                        <p>Vote Count: {movie.vote_count}</p>
-                                    </div>
-
-                                    <Link href={`/movies/${movie.id}`} className='text-lg font-semibold'>{movie.title}</Link>
-
-                                    <p>{movie.overview}</p>
-                                </div>
-                            ))}
+            <section className='movies'>
+                <div className='wrapper py-16'>
+                    {search && (
+                        <div className='mb-6'>
+                            <span className='text-lg font-semibold'>{movies.length} Results for: </span>
+                            <span className='text-lg'>"{search}"</span>
                         </div>
-                    </>
-                ) : (
-                    <div className='text-foreground text-2xl'>
-                        <p>Sorry, no movies found :(</p>
-                    </div>
-                )}
-            </div>
+                    )}
+
+                    {(movies.length > 0) && !error ? (
+                        <div className=''>
+                            <div className='grid lg:grid-cols-2 xl:grid-cols-3 gap-x-5 lg:gap-x-6 xl:gap-x-8 gap-y-8 xl:gap-y-10'>
+                                {movies.slice(0, visibleCards).map((movie: any) => (
+                                    <AnimatePresence>
+                                        <motion.div
+                                            key={movie.id}
+                                            initial={{ opacity: 0, y: 50 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                        >
+                                            <div className='h-48 md:h-56 rounded-xl overflow-hidden cursor-pointer'>
+                                                <motion.div
+                                                    initial={{ scale: 1, opacity: 0.75 }}
+                                                    whileHover={{ scale: 1.5, opacity: 1 }}
+                                                    className='relative background-image-nf h-full w-full rounded-xl max-md:!opacity-100' style={{ backgroundImage: `url(${getBackdrop(movie.backdrop_path)})` }}
+                                                >
+                                                    <Link
+                                                        href={`/movies/${movie.id}`}
+                                                        className='absolute top-0 left-0 h-full w-full bg-transparent z-50'
+                                                    />
+                                                </motion.div>
+                                            </div>
+
+                                            <div className='grid grid-cols-[auto_1fr_auto] gap-2 items-center'>
+                                                <div className='w-fit my-4'>
+                                                    <Link
+                                                        className='hover:text-primary transition-colors'
+                                                        href={`/movies/${movie.id}`}
+                                                    >
+                                                        <span className='block font-semibold text-xl'>{movie.title}</span>
+                                                        <span className='block text-xs'>{movie.original_title}</span>
+                                                    </Link>
+                                                </div>
+
+                                                <div className='w-full h-[0.75px] rounded-full bg-border'></div>
+
+                                                <div className='w-fit'>
+                                                    <span>{new Date(movie.release_date).getFullYear()}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className='h-auto line-clamp-3 text-content mb-2'>
+                                                <p className=''>{movie.overview}</p>
+                                            </div>
+
+                                            <Link
+                                                className='hover:text-primary transition-colors animated-link uppercase font-medium text-sm'
+                                                href={`/movies/${movie.id}`}
+                                            >
+                                                <span>See more</span>
+                                                <FaAnglesRight className='transition-transform' />
+                                            </Link>
+                                        </motion.div>
+                                    </AnimatePresence>
+                                ))}
+                            </div>
+
+                            {movies.length > visibleCards && (
+                                <div className='mt-10'>
+                                    <button
+                                        onClick={handleLoadMore}
+                                        className='flex h-[48px] items-center bg-primary hover:bg-primary-md transition-colors text-white px-5 rounded-full cursor-pointer mx-auto'
+                                    >
+                                        Load More
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <div className='text-foreground text-2xl'>
+                            <p>Sorry, no movies found :(</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+
         </div>
     )
 }
