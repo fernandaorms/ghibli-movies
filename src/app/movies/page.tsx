@@ -9,7 +9,7 @@ import { FaAnglesRight } from 'react-icons/fa6';
 
 import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
-import { getAllMovies, getBackdrop } from '@/lib/tmdb';
+import { getAllMovies, getBackdropImage } from '@/lib/tmdb';
 
 export default function Movies() {
     const searchParams = useSearchParams();
@@ -78,7 +78,7 @@ export default function Movies() {
                                                 <motion.div
                                                     initial={{ scale: 1, opacity: 0.75 }}
                                                     whileHover={{ scale: 1.5, opacity: 1 }}
-                                                    className='relative background-image-nf h-full w-full rounded-xl max-md:!opacity-100' style={{ backgroundImage: `url(${getBackdrop(movie.backdrop_path)})` }}
+                                                    className='relative background-image-nf h-full w-full rounded-xl max-md:!opacity-100' style={{ backgroundImage: `url(${getBackdropImage(movie.backdrop_path)})` }}
                                                 >
                                                     <Link
                                                         href={`/movies/${movie.id}`}
