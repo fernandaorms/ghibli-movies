@@ -25,6 +25,10 @@ export async function getMovieImages(id: any) {
     return fetchFromTMDB(`movie/${id}/images`, ['include_image_language=en,null']);
 }
 
+export async function getMovieCredits(id: any) {
+    return fetchFromTMDB(`movie/${id}/credits`);
+}
+
 
 // Getting Images
 function getImage(file_path: string, file_size: string) {
@@ -33,18 +37,24 @@ function getImage(file_path: string, file_size: string) {
 
 type BackdropSizes = 'w300' | 'w780' | 'w1280' | 'original';
 
-export function getBackdrop(file_path: string, file_size: BackdropSizes = 'original') {
+export function getBackdropImage(file_path: string, file_size: BackdropSizes = 'original') {
     return getImage(file_path, file_size);
 }
 
 type LogoSizes = 'w45' | 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original';
 
-export function getLogo(file_path: string, file_size: LogoSizes = 'original') {
+export function getLogoImage(file_path: string, file_size: LogoSizes = 'original') {
     return getImage(file_path, file_size);
 }
 
 type PosterSizes = 'w92' | 'w154' | 'w185' | 'w342' | 'w500' | 'w780' | 'original';
 
-export function getPoster(file_path: string, file_size: PosterSizes = 'original') {
+export function getPosterImage(file_path: string, file_size: PosterSizes = 'original') {
+    return getImage(file_path, file_size);
+}
+
+type ProfileSizes = 'w45' | 'w185' | 'h632' | 'original';
+
+export function getProfileImage(file_path: string, file_size: ProfileSizes = 'original') {
     return getImage(file_path, file_size);
 }
