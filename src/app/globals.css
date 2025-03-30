@@ -4,6 +4,8 @@
     --background: #ffffff;
     --foreground: #171717;
     --foreground-light: rgba(23, 23, 23, 0.075);
+    --content: #555555;
+    --border: #dadada;
 
     --neutral-light: #ededed;
     --primary: #1990C6;
@@ -17,12 +19,18 @@
     --background: #1f1f1f;
     --foreground: #ededed;
     --foreground-light: rgba(237, 237, 237, 0.175);
+    --content: rgba(255, 255, 255, 0.75);
+    --border: #52525B;
+
 }
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-foreground-light: var(--foreground-light);
+    --color-content: var(--content);
+    --color-border: var(--border);
+
     --color-neutral-light: var(--neutral-light);
     --color-primary: var(--primary);
     --color-primary-md: var(--primary-md);
@@ -37,7 +45,6 @@ body {
     font-family: var(--font-rubik);
     overflow-x: hidden;
 }
-
 
 @layer utilities {
     .wrapper {
@@ -56,10 +63,17 @@ body {
 
             @apply absolute top-0 left-0 h-full w-full;
         }
+    }
 
-        &.dark-filter::after {
-            /* background: linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 1)); */
-            background: linear-gradient(to bottom, rgba(31, 31, 31, 0.85), rgba(31, 31, 31, 0.75), rgba(31, 31, 31, 1));
+    .background-image-nf {
+        background: center/cover;
+    }
+
+    .animated-link {
+        @apply flex items-center gap-2;
+
+        &:hover> :is(svg, img) {
+            transform: translateX(25%);
         }
     }
 }
