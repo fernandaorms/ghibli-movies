@@ -7,14 +7,16 @@ import { useParams, notFound } from 'next/navigation';
 import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
 import { getBackdropImage, getMovieByID, getMovieCredits, getMovieImages, getPosterImage, getProfileImage } from '@/lib/tmdb';
+import { CastScroll } from '@/layout/cast-scroll';
+import { CrewScroll } from '@/layout/crew-scroll';
+import { MovieInfo } from '@/layout/movie-info';
 import { StarsRating } from '@/components/stars-rating';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaAnglesRight } from 'react-icons/fa6';
-import { CastScroll } from '@/layout/cast-scroll';
-import { CrewScroll } from '@/layout/crew-scroll';
 import { div } from 'motion/react-client';
-import { MovieInfo } from '@/layout/movie-info';
+import { MovieGallery } from '@/layout/movie-gallery';
+import { MovieCredits } from '@/layout/movie-credits';
 
 const COMPANY_ID = process.env.NEXT_PUBLIC_COMPANY_ID;
 
@@ -71,9 +73,7 @@ export default function Page() {
             <Header />
 
             <main>
-                <section
-                    id='hero'
-                    className='relative pt-32 min-h-[75vh] lg:min-h-[75vh]'>
+                <section className='hero relative pt-32 min-h-[75vh] lg:min-h-[75vh]'>
                     <div className='background-image backdrop' style={{ backgroundImage: `url(${getBackdropImage(movie.backdrop_path)})` }}></div>
 
                     <div className='relative wrapper grid grid-cols-[1fr] lg:grid-cols-[auto_1fr] gap-12 pt-8 pb-16'>
@@ -94,27 +94,25 @@ export default function Page() {
                     </div>
                 </section>
 
-                {movieCredits && (
-                    <section className='credits bg-amber-200'>
-                        <div className='wrapper flex flex-col gap-12'>
-                            {movieCredits?.cast?.length > 0 && (
-                                <CastScroll movieID={movie.id} castArray={movieCredits.cast.slice(0, 12)} />
-                            )}
-                            {(movieCredits?.cast?.length > 0 && movieCredits?.crew?.length > 0) && (
-                                <div className='h-0.5 w-full bg-foreground-light rounded-full'></div>
-                            )}
-                            {movieCredits?.crew?.length > 0 && (
-                                <CrewScroll movieID={movie.id} crewArray={movieCredits.crew.slice(0, 12)} />
-                            )}
-                        </div>
-                    </section>
-                )}
+                <div className='grid pt-16 pb-20 gap-16'>
+                    {movieImages && (
+                        <MovieGallery movieImages={movieImages} />
+                    )}
+
+                    {(movieImages && movieCredits) && (
+                        <div className='wrapper'><div className='h-0.5 w-full bg-foreground-light rounded-full'></div></div>
+                    )}
+
+                    {movieCredits && (
+                        <MovieCredits movieCredits={movieCredits} />
+                    )}
+                </div>
 
                 <div className='wrapper'>
                     {movieImages && (
                         <pre className='overflow-x-hidden'>
                             {
-                                JSON.stringify(movieImages, null, 2)
+                                // JSON.stringify(movieImages, null, 2)
                             }
                         </pre>
                     )}
