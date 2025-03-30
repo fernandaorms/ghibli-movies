@@ -76,4 +76,8 @@ body {
             transform: translateX(25%);
         }
     }
+
+    .menu-item {
+        @apply transition-colors hover:text-primary;
+    }
 }
