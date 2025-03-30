@@ -142,17 +142,6 @@ export default function Movies() {
                                     <Link href={'/movies'} className='text-primary hover:underline font-medium'>Movies Catalog</Link>
                                 </p>
                             </div>
-
-                            {/* <div className='w-35 h-35 rounded-full mx-auto bg-foreground-light p-3'>
-                                <Image
-                                    className='w-full relative -top-[2px] left-[3px]'
-                                    src='/totoro-sm.gif'
-                                    alt='Totoro walking.'
-                                    width={200}
-                                    height={0}
-                                    priority
-                                />
-                            </div> */}
                         </div>
                     )}
                 </div>
