@@ -11,17 +11,18 @@ type Props = {
 export function CastScroll(props: Props) {
     return (
         <div className='cast'>
-            <div className='flex items-baseline gap-2 justify-between md:block'>
+            <div className='flex items-baseline gap-2 justify-between md:block mb-5'>
                 <h2 className='font-medium text-xl md:text-2xl'>Cast</h2>
 
-                <Link
+                {/* <Link
                     className='hover:text-primary transition-colors animated-link uppercase font-medium text-[14px]'
                     href={`/movies/${props.movieID}/credits`}
                 >
                     <span>See all</span>
                     <FaAnglesRight className='transition-transform' />
-                </Link>
+                </Link> */}
             </div>
+
             <div className='overflow-clip relative'>
                 <div className='absolute top-0 left-0 h-full w-10 bg-linear-to-r from-background to-transparent z-10'></div>
                 <div className='absolute top-0 right-0 h-full w-10 bg-linear-to-l from-background to-transparent z-10'></div>

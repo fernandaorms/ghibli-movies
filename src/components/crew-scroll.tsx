@@ -11,16 +11,16 @@ type Props = {
 export function CrewScroll(props: Props) {
     return (
         <div className='crew'>
-            <div className='flex items-baseline gap-2 justify-between md:flex-col md:block'>
+            <div className='flex items-baseline gap-2 justify-between md:flex-col md:block mb-5'>
                 <h2 className='font-medium text-xl md:text-2xl'>Crew</h2>
 
-                <Link
+                {/* <Link
                     className='hover:text-primary transition-colors animated-link uppercase font-medium text-[14px]'
                     href={`/movies/${props.movieID}/credits`}
                 >
                     <span>See all</span>
                     <FaAnglesRight className='transition-transform' />
-                </Link>
+                </Link> */}
             </div>
 
             <div className='overflow-clip relative'>
