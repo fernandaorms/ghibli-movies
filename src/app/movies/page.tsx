@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { AnimatePresence, motion } from 'motion/react';
+import { FaAnglesRight } from 'react-icons/fa6';
 
 import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
 import { getAllMovies, getBackdrop } from '@/lib/tmdb';
-import { AnimatePresence, motion } from 'motion/react';
-import { FaAnglesRight } from 'react-icons/fa6';
 
 export default function Movies() {
     const searchParams = useSearchParams();
@@ -58,7 +58,7 @@ export default function Movies() {
             <section className='movies'>
                 <div className='wrapper py-16'>
                     {search && (
-                        <div className='mb-6'>
+                        <div className={`mb-6 ${movies.length === 0 ? 'text-center' : ''}`}>
                             <span className='text-lg font-semibold'>{movies.length} Results for: </span>
                             <span className='text-lg'>"{search}"</span>
                         </div>
@@ -133,13 +133,30 @@ export default function Movies() {
                             )}
                         </div>
                     ) : (
-                        <div className='text-foreground text-2xl'>
-                            <p>Sorry, no movies found :(</p>
+                        <div className='w-fit mx-auto text-foreground'>
+                            <div className='text-center mb-5'>
+                                <p className='text-2xl font-medium'>Sorry, no movies found!</p>
+
+                                <p className='text-lg'>
+                                    Try searching for something else or explore our {' '}
+                                    <Link href={'/movies'} className='text-primary hover:underline font-medium'>Movies Catalog</Link>
+                                </p>
+                            </div>
+
+                            {/* <div className='w-35 h-35 rounded-full mx-auto bg-foreground-light p-3'>
+                                <Image
+                                    className='w-full relative -top-[2px] left-[3px]'
+                                    src='/totoro-sm.gif'
+                                    alt='Totoro walking.'
+                                    width={200}
+                                    height={0}
+                                    priority
+                                />
+                            </div> */}
                         </div>
                     )}
                 </div>
             </section>
-
         </div>
     )
 }
