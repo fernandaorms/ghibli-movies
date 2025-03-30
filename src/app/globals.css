@@ -81,3 +81,17 @@ body {
         @apply transition-colors hover:text-primary;
     }
 }
+
+.crew,
+.cast {
+    position: relative;
+
+    ol {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    ol::-webkit-scrollbar {
+        display: none;
+    }
+}
