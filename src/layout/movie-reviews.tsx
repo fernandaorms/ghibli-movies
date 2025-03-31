@@ -161,7 +161,7 @@ const SingleReview = ({
                         </div>
                     </div>
 
-                    <div className='text-content my-5 overflow-scroll'>
+                    <div className='text-content my-5 overflow-y-scroll'>
                         {review.content && (
                             <p>{review.content}</p>
                         )}
