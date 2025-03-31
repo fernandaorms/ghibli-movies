@@ -1,12 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Logo } from '@/components/logo';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
-import { useEffect, useState } from 'react';
-import { FaMagnifyingGlass, FaAlignJustify, FaXmark, FaX } from 'react-icons/fa6';
+import { motion, useMotionValueEvent, useScroll } from 'motion/react';
+import { useState } from 'react';
 import { MenuToogle } from '@/components/menu-toogle';
 import { SearchToogle } from '@/components/search-toogle';
 import { HeaderNav } from '@/components/header-nav';

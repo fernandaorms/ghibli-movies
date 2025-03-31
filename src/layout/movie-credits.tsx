@@ -1,6 +1,6 @@
 import { getProfileImage } from '@/lib/tmdb';
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 type Props = {
     movieCredits: any,
