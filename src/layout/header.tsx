@@ -53,7 +53,7 @@ export function Header() {
     return (
         <>
             <motion.header
-                className='z-50 fixed w-full top-0 '
+                className='fixed w-full top-0 '
                 initial={{
                     color: 'var(--white)',
                     backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -65,6 +65,7 @@ export function Header() {
                     height: scrolled ? 80 : 128,
                 }}
                 transition={{ duration: .3, ease: 'easeInOut' }}
+                style={{zIndex: 100}}
             >
                 <div className='h-full w-full'>
                     <div className='h-full w-full wrapper flex justify-between items-center'>

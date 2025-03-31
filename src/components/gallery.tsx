@@ -17,7 +17,8 @@ export function Gallery({ selectedTab, galleryIndex, setIsOpen, setGalleryIndex 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className='fixed top-0 left-0 h-screen w-screen bg-background opacity-90 text-white z-50'
+            className='fixed top-0 left-0 h-screen w-screen bg-background opacity-90 text-white'
+            style={{zIndex: 100}}
         >
             <div className='wrapper h-full flex flex-col justify-between py-4 xl:py-12 gap-2'>
                 <Top
