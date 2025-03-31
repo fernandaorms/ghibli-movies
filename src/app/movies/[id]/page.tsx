@@ -94,7 +94,7 @@ export default function Page() {
                     </div>
                 </section>
 
-                <div className='grid pt-16 pb-20 gap-16'>
+                <div className='flex flex-col pt-16 pb-20 gap-16'>
                     {movieImages && (
                         <MovieGallery movieImages={movieImages} />
                     )}
@@ -102,7 +102,6 @@ export default function Page() {
                     {(movieImages && movieCredits) && (
                         <div className='wrapper'><div className='h-0.5 w-full bg-foreground-light rounded-full'></div></div>
                     )}
-
                     {movieCredits && (
                         <MovieCredits movieCredits={movieCredits} />
                     )}
