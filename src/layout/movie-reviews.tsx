@@ -82,7 +82,7 @@ const ReviewsList = ({
                     key={index}
                     className='shrink-0 h-[232px] max-w-[97%] md:max-w-[50%] bg-background border-2 border-border rounded-xl px-5 py-5 flex flex-col'
                 >
-                    <div className='h-7 flex items-center justify-between gap-12'>
+                    <div className='h-7 flex items-center justify-between gap-5 xl:gap-50'>
                         <div>
                             {review.author_details?.rating && (
                                 <div className='flex items-center h-7 w-fit px-3 rounded-full gap-2 bg-foreground-light text-sm font-medium'>
@@ -149,7 +149,7 @@ const SingleReview = ({
                 </motion.div>
 
                 <div className='h-fit max-h-full min-h-[275px] w-full bg-background border-2 border-border rounded-xl px-5 py-5 grid grid-rows-[28px_1fr_48px]'>
-                    <div className='h-7 flex items-center justify-between gap-12'>
+                    <div className='h-7 flex items-center justify-between gap-5 xl:gap-50'>
                         <div>
                             {review.author_details?.rating && (
                                 <div className='flex items-center h-7 w-fit px-3 rounded-full gap-2 bg-foreground-light text-sm font-medium'>
