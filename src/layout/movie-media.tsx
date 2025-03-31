@@ -145,7 +145,7 @@ const ImagesList = ({
                     >
                         <div className='absolute top-0 left 0 h-full w-full opacity-0 md:opacity-35 bg-black hover:opacity-0 rounded-xl transition-opacity'></div>
 
-                        <div className='md:hidden bg-foreground-light h-10 w-10 flex items-center justify-center rounded-full cursor-pointer absolute z-10 right-2 bottom-2'>
+                        <div className='md:hidden bg-background h-10 w-10 flex items-center justify-center rounded-full cursor-pointer absolute z-10 right-2 bottom-2'>
                             <FaExpand />
                         </div>
                     </motion.div>

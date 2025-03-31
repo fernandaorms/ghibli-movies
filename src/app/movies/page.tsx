@@ -121,7 +121,7 @@ const MovieCard = ({
                         className='absolute top-0 left-0 h-full w-full bg-transparent z-50'
                     />
 
-                    <div className='md:hidden bg-foreground-light h-10 w-10 flex items-center justify-center rounded-full cursor-pointer absolute z-10 right-2 top-2'>
+                    <div className='md:hidden bg-background h-10 w-10 flex items-center justify-center rounded-full cursor-pointer absolute z-10 right-2 top-2'>
                         <FaArrowUpRightFromSquare />
                     </div>
                 </motion.div>
