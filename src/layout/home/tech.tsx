@@ -1,5 +1,6 @@
 'use client';
 
+import { once } from 'events';
 import { motion, useAnimation, useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
 import { RiNextjsLine, RiTailwindCssLine } from 'react-icons/ri';
@@ -38,12 +39,15 @@ export function Tech() {
                         <p className='text-content'>This project uses the TMDB API for the movie catalog and was built with:</p>
                     </div>
 
-                    <div className='flex items-center justify-center'>
-                        <div>
-                            <RiNextjsLine />
+                    <div className='flex items-center justify-center gap-4 flex-wrap font-medium mt-6 xl:mt-6'>
+                        <div className='flex items-center gap-2 bg-foreground-light py-3 px-3 rounded-xl'>
+                            <span>Next JSn</span>
+                            <RiNextjsLine className='text-xl' />
                         </div>
-                        <div>
-                            <RiTailwindCssLine />
+
+                        <div className='flex items-center gap-2 bg-foreground-light py-3 px-3 rounded-xl'>
+                            <span>Tailwind CSS</span>
+                            <RiTailwindCssLine className='text-xl' />
                         </div>
                     </div>
                 </motion.div>
