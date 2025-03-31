@@ -29,6 +29,10 @@ export async function getMovieCredits(id: any) {
     return fetchFromTMDB(`movie/${id}/credits`);
 }
 
+export async function getMovieReviews(id: any) {
+    return fetchFromTMDB(`movie/${id}/reviews`);
+}
+
 
 // Getting Images
 function getImage(file_path: string, file_size: string) {

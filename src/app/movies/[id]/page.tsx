@@ -9,8 +9,9 @@ import { Header } from '@/layout/header';
 import { MovieInfo } from '@/layout/movie-info';
 import { MovieMedia } from '@/layout/movie-media';
 import { MovieCredits } from '@/layout/movie-credits';
-import { getBackdropImage, getMovieByID, getMovieCredits, getMovieImages, getPosterImage } from '@/lib/tmdb';
 import { Banner } from '@/layout/banner';
+import { MovieReviews } from '@/layout/movie-reviews';
+import { getBackdropImage, getMovieByID, getMovieCredits, getMovieImages, getMovieReviews, getPosterImage } from '@/lib/tmdb';
 
 const COMPANY_ID = process.env.NEXT_PUBLIC_COMPANY_ID;
 
@@ -20,6 +21,7 @@ export default function Page() {
     const [movie, setMovie] = useState<any>(null);
     const [movieImages, setMovieImages] = useState<any>(null);
     const [movieCredits, setMovieCredits] = useState<any>(null);
+    const [movieReviews, setMovieReviews] = useState<any>(null);
     const [movieDirector, setMovieDirector] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [authorized, setAuthorized] = useState(true);
@@ -48,6 +50,10 @@ export default function Page() {
         getMovieCredits(id)
             .then((data) => setMovieCredits(data))
             .catch(() => setMovieCredits(null));
+
+        getMovieReviews(id)
+            .then((data) => setMovieReviews(data))
+            .catch(() => setMovieReviews(null));
     }, [movie])
 
     useEffect(() => {
@@ -98,19 +104,15 @@ export default function Page() {
                     {movieCredits && (
                         <MovieCredits movieCredits={movieCredits} />
                     )}
+                    {(movieCredits && (movieReviews?.results?.length > 0)) && (
+                        <div className='wrapper'><div className='h-0.5 w-full bg-foreground-light rounded-full'></div></div>
+                    )}
+                    {movieReviews?.results?.length > 0 && (
+                        <MovieReviews reviews={movieReviews.results} />
+                    )}
                 </div>
 
                 <Banner />
-                
-                <div className='wrapper'>
-                    {movieImages && (
-                        <pre className='overflow-x-hidden'>
-                            {
-                                // JSON.stringify(movieImages, null, 2)
-                            }
-                        </pre>
-                    )}
-                </div>
             </main>
         </div>
     )
