@@ -6,17 +6,16 @@
     --foreground-light: rgba(23, 23, 23, 0.075);
     --content: #555555;
     --border: #dadada;
+    --dark-md: #eeeeee;
+    --white-20: rgba(255, 255, 255, 0.20);
 
     --neutral-light: #ededed;
     --primary: #1990C6;
     --primary-md: #38527B;
     --primary-sm: #586e8f;
     --white: #FFF;
-    --white-75: rgba(255, 255, 255, 0.75);
     --semi-transparent: rgba(237, 237, 237, 0.175);
     --dark: rgba(31, 31, 31, 0.85);
-    --dark-md: #eeeeee;
-    
 }
 
 [data-theme='dark'] {
@@ -27,6 +26,7 @@
     --content: rgba(255, 255, 255, 0.75);
     --border: #52525B;
     --dark-md: #434444;
+    --white-20: rgba(0, 0, 0, 0.35);
 }
 
 @theme inline {
@@ -41,6 +41,7 @@
     --color-primary-md: var(--primary-md);
     --color-primary-sm: var(--primary-sm);
     --color-white: var(--white);
+    --color-white-20: var(--white-20);
     --color-white-75: var(--white-75);
     --color-semi-transparent: var(--semi-transparent);
     --color-dark: var(--dark);
@@ -69,14 +70,17 @@ body {
 
         &::after {
             content: '';
-            /* background: linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.25), rgba(10, 10, 10, 1)); */
             background: linear-gradient(to bottom, rgba(31, 31, 31, 0.85), rgba(31, 31, 31, 0.25), rgba(31, 31, 31, 1));
 
             @apply absolute top-0 left-0 h-full w-full;
         }
 
-        &.backdrop::after{
+        &.backdrop::after {
             background: rgba(31, 31, 31, 0.8);
+        }
+
+        &.home::after {
+            background: linear-gradient(to bottom, rgba(31, 31, 31, 1), rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 1));
         }
     }
 
