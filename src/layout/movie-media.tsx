@@ -33,10 +33,6 @@ export function MovieMedia({ movieImages }: Props) {
         setGalleryIndex(index);
     }
 
-    useEffect(() => {
-        console.log(isOpen, galleryIndex);
-    }, [isOpen, galleryIndex]);
-
     return (
         <section className='media'>
             <div className='wrapper'>
