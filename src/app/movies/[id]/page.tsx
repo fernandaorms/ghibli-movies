@@ -6,17 +6,10 @@ import { useParams, notFound } from 'next/navigation';
 
 import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
-import { getBackdropImage, getMovieByID, getMovieCredits, getMovieImages, getPosterImage, getProfileImage } from '@/lib/tmdb';
-import { CastScroll } from '@/layout/cast-scroll';
-import { CrewScroll } from '@/layout/crew-scroll';
 import { MovieInfo } from '@/layout/movie-info';
-import { StarsRating } from '@/components/stars-rating';
-import { motion } from 'motion/react';
-import Link from 'next/link';
-import { FaAnglesRight } from 'react-icons/fa6';
-import { div } from 'motion/react-client';
 import { MovieMedia } from '@/layout/movie-media';
 import { MovieCredits } from '@/layout/movie-credits';
+import { getBackdropImage, getMovieByID, getMovieCredits, getMovieImages, getPosterImage } from '@/lib/tmdb';
 
 const COMPANY_ID = process.env.NEXT_PUBLIC_COMPANY_ID;
 
@@ -54,7 +47,6 @@ export default function Page() {
         getMovieCredits(id)
             .then((data) => setMovieCredits(data))
             .catch(() => setMovieCredits(null));
-
     }, [movie])
 
     useEffect(() => {
