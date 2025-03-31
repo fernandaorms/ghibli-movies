@@ -67,11 +67,11 @@ export function MovieCredits(props: Props) {
                                 <li key={index} className='block !w-36 shrink-0'>
                                     <motion.div
                                         initial={{ scale: 1 }}
-                                        whileHover={{ scale: 1.25, zIndex: 15 }}
+                                        // whileHover={{ scale: 1.25, zIndex: 15 }}
                                         style={{ backgroundImage: `url(${getProfileImage(person.profile_path)})` }}
                                         className='relative bg-foreground-light h-24 w-24 rounded-full flex items-center justify-center bg-center bg-cover mx-auto z-10'
                                     >
-                                        <div className='absolute top-0 left 0 h-full w-full opacity-0 md:opacity-35 bg-black hover:opacity-0 rounded-full transition-opacity'></div>
+                                        {/* <div className='absolute top-0 left 0 h-full w-full opacity-0 md:opacity-35 bg-black hover:opacity-0 rounded-full transition-opacity'></div> */}
                                     </motion.div>
 
                                     <div className='text-center'>
