@@ -15,23 +15,12 @@ export function MovieGallery(props: Props) {
         { id: 1, label: 'Posters', images: posters }
     ];
 
-    const [selectedTab, setSelectedTab] = useState(gallery[0])
-
-    const carouselRef = useRef<HTMLOListElement>(null);
-    const [maxDrag, setMaxDrag] = useState(0);
-
-    useEffect(() => {
-        if (carouselRef.current) {
-            const containerWidth = carouselRef.current.scrollWidth;
-            const visibleWidth = carouselRef.current.offsetWidth;
-            setMaxDrag(visibleWidth - containerWidth);
-        }
-    }, [selectedTab]);
+    const [selectedTab, setSelectedTab] = useState(gallery[0]);
 
     return (
-        <section className='gallery min-h-[35vh]'>
+        <section className='gallery'>
             <div className='wrapper'>
-                <nav className='flex gap-16 items-baseline'>
+                <nav className='flex gap-10 md:gap-16 items-baseline pb-2'>
                     <h2 className='font-medium text-xl md:text-2xl'>Media</h2>
 
                     <ul className='flex gap-6 relative'>
@@ -74,13 +63,7 @@ export function MovieGallery(props: Props) {
                             transition={{ duration: 0.2 }}
                         >
 
-                            <motion.ol
-                                ref={carouselRef}
-                                className='flex py-5 gap-2'
-                                drag='x'
-                                dragConstraints={{ left: maxDrag, right: 20 }}
-                                whileTap={{ cursor: 'grabbing' }}
-                            >
+                            <ol className='flex py-5 gap-2 overflow-x-scroll'>
                                 {selectedTab.images.map((image: any, index: number) => (
                                     <li key={index} className='block shrink-0'>
                                         <motion.div
@@ -97,7 +80,7 @@ export function MovieGallery(props: Props) {
                                         </motion.div>
                                     </li>
                                 ))}
-                            </motion.ol>
+                            </ol>
                         </motion.div>
                     </AnimatePresence>
                 </div>
