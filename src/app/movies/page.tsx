@@ -1,11 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { AnimatePresence, motion } from 'motion/react';
-import { FaAnglesRight } from 'react-icons/fa6';
+import { FaAnglesRight, FaArrowUpRightFromSquare } from 'react-icons/fa6';
 
 import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
@@ -58,10 +57,10 @@ export default function Movies() {
             <section className='movies'>
                 <div className='wrapper py-16'>
                     {search && (
-                        <div className={`mb-6 ${movies.length === 0 ? 'text-center' : ''}`}>
-                            <span className='text-lg font-semibold'>{movies.length} Results for: </span>
-                            <span className='text-lg'>"{search}"</span>
-                        </div>
+                        <SearchIntro
+                            length={movies.length}
+                            search={search}
+                        />
                     )}
 
                     {(movies.length > 0) && !error ? (
@@ -74,48 +73,9 @@ export default function Movies() {
                                             initial={{ opacity: 0, y: 50 }}
                                             animate={{ opacity: 1, y: 0 }}
                                         >
-                                            <div className='h-48 md:h-56 rounded-xl overflow-hidden cursor-pointer'>
-                                                <motion.div
-                                                    initial={{ scale: 1, opacity: 0.75 }}
-                                                    whileHover={{ scale: 1.5, opacity: 1 }}
-                                                    className='relative background-image-nf h-full w-full rounded-xl max-md:!opacity-100' style={{ backgroundImage: `url(${getBackdropImage(movie.backdrop_path)})` }}
-                                                >
-                                                    <Link
-                                                        href={`/movies/${movie.id}`}
-                                                        className='absolute top-0 left-0 h-full w-full bg-transparent z-50'
-                                                    />
-                                                </motion.div>
-                                            </div>
-
-                                            <div className='grid grid-cols-[auto_1fr_auto] gap-2 items-center'>
-                                                <div className='w-fit my-4'>
-                                                    <Link
-                                                        className='hover:text-primary transition-colors'
-                                                        href={`/movies/${movie.id}`}
-                                                    >
-                                                        <span className='block font-semibold text-xl'>{movie.title}</span>
-                                                        <span className='block text-xs'>{movie.original_title}</span>
-                                                    </Link>
-                                                </div>
-
-                                                <div className='w-full h-[0.75px] rounded-full bg-border'></div>
-
-                                                <div className='w-fit'>
-                                                    <span>{new Date(movie.release_date).getFullYear()}</span>
-                                                </div>
-                                            </div>
-
-                                            <div className='h-auto line-clamp-3 text-content mb-2'>
-                                                <p className=''>{movie.overview}</p>
-                                            </div>
-
-                                            <Link
-                                                className='hover:text-primary transition-colors animated-link uppercase font-medium text-sm'
-                                                href={`/movies/${movie.id}`}
-                                            >
-                                                <span>See more</span>
-                                                <FaAnglesRight className='transition-transform' />
-                                            </Link>
+                                            <MovieCard
+                                                movie={movie}
+                                            />
                                         </motion.div>
                                     </AnimatePresence>
                                 ))}
@@ -123,29 +83,115 @@ export default function Movies() {
 
                             {movies.length > visibleCards && (
                                 <div className='mt-10'>
-                                    <button
+                                    <ShowMore
                                         onClick={handleLoadMore}
-                                        className='flex h-[48px] items-center bg-primary hover:bg-primary-md transition-colors text-white px-5 rounded-full cursor-pointer mx-auto'
-                                    >
-                                        Load More
-                                    </button>
+                                    />
                                 </div>
                             )}
                         </div>
                     ) : (
-                        <div className='w-fit mx-auto text-foreground'>
-                            <div className='text-center mb-5'>
-                                <p className='text-2xl font-medium'>Sorry, no movies found!</p>
-
-                                <p className='text-lg'>
-                                    Try searching for something else or explore our {' '}
-                                    <Link href={'/movies'} className='text-primary hover:underline font-medium'>Movies Catalog</Link>
-                                </p>
-                            </div>
-                        </div>
+                        <NoResults />
                     )}
                 </div>
             </section>
+        </div>
+    )
+}
+
+const MovieCard = ({
+    movie,
+}: {
+    movie: any,
+}) => {
+    return (
+        <div>
+            <div className='h-48 md:h-56 rounded-xl overflow-hidden cursor-pointer'>
+                <motion.div
+                    initial={{ scale: 1, opacity: 0.75 }}
+                    whileHover={{ scale: 1.5, opacity: 1 }}
+                    className='relative background-image-nf h-full w-full rounded-xl max-md:!opacity-100' style={{ backgroundImage: `url(${getBackdropImage(movie.backdrop_path)})` }}
+                >
+                    <Link
+                        href={`/movies/${movie.id}`}
+                        className='absolute top-0 left-0 h-full w-full bg-transparent z-50'
+                    />
+
+                    <div className='md:hidden bg-foreground-light h-10 w-10 flex items-center justify-center rounded-full cursor-pointer absolute z-10 right-2 top-2'>
+                        <FaArrowUpRightFromSquare  />
+                    </div>
+                </motion.div>
+            </div>
+
+            <div className='grid grid-cols-[auto_1fr_auto] gap-2 items-center'>
+                <div className='w-fit my-4'>
+                    <Link
+                        className='hover:text-primary transition-colors'
+                        href={`/movies/${movie.id}`}
+                    >
+                        <span className='block font-semibold text-xl'>{movie.title}</span>
+                        <span className='block text-xs'>{movie.original_title}</span>
+                    </Link>
+                </div>
+
+                <div className='w-full h-[0.75px] rounded-full bg-border'></div>
+
+                <div className='w-fit'>
+                    <span>{new Date(movie.release_date).getFullYear()}</span>
+                </div>
+            </div>
+
+            <div className='h-auto line-clamp-3 text-content mb-2'>
+                <p className=''>{movie.overview}</p>
+            </div>
+
+            <Link
+                className='max-sm:text-primary hover:text-primary transition-colors animated-link uppercase font-medium text-sm'
+                href={`/movies/${movie.id}`}
+            >
+                <span>See more</span>
+                <FaAnglesRight className='transition-transform' />
+            </Link>
+        </div>
+    )
+}
+
+const SearchIntro = ({
+    length,
+    search,
+}: {
+    length: number,
+    search: string,
+}) => {
+    return (
+        <div className={`mb-6 ${length === 0 ? 'text-center' : ''}`}>
+            <span className='text-lg font-semibold'>{length} Results for: </span>
+            <span className='text-lg'>"{search}"</span>
+        </div>
+    )
+}
+
+const ShowMore = ({ onClick }: { onClick: () => void }) => {
+    return (
+        <button
+            onClick={onClick}
+            className='flex h-[48px] items-center bg-primary hover:bg-primary-md transition-colors text-white px-5 rounded-full cursor-pointer mx-auto'
+        >
+            Load More
+        </button>
+    )
+}
+
+const NoResults = () => {
+    return (
+        <div className='w-fit mx-auto text-foreground'>
+            <div className='text-center mb-5'>
+                <p className='text-2xl font-medium'>Sorry, no movies found!</p>
+
+                <p className='text-lg'>
+                    Try searching for something else or explore our {' '}
+                    <Link href={'/movies'} className='text-primary hover:underline font-medium'>Movies Catalog</Link>
+                </p>
+            </div>
         </div>
     )
 }
