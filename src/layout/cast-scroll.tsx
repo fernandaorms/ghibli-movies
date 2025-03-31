@@ -1,4 +1,4 @@
-import { getBackdropImage } from '@/lib/tmdb'
+import { getProfileImage } from '@/lib/tmdb'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { FaAnglesRight } from 'react-icons/fa6'
@@ -33,12 +33,12 @@ export function CastScroll(props: Props) {
                     dragConstraints={{ left: -250, right: 20 }}
                     whileTap={{ cursor: 'grabbing' }}
                 >
-                    {props.castArray.map((cast: any) => (
-                        <li key={cast.id} className='block !w-36 shrink-0'>
+                    {props.castArray.map((cast: any, index : number) => (
+                        <li key={index} className='block !w-36 shrink-0'>
                             <motion.div
                                 initial={{ scale: 1 }}
                                 whileHover={{ scale: 1.25 }}
-                                style={{ backgroundImage: `url(${getBackdropImage(cast.profile_path)})` }}
+                                style={{ backgroundImage: `url(${getProfileImage(cast.profile_path)})` }}
                                 className='relative bg-foreground-light h-24 w-24 rounded-full flex items-center justify-center bg-center bg-cover mx-auto z-10'
                             >
                                 <div className='absolute top-0 left 0 h-full w-full opacity-0 md:opacity-35 bg-black hover:opacity-0 rounded-full transition-opacity'></div>
