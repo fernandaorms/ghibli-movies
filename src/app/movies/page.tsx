@@ -9,6 +9,7 @@ import { FaAnglesRight, FaArrowUpRightFromSquare } from 'react-icons/fa6';
 import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
 import { getAllMovies, getBackdropImage } from '@/lib/tmdb';
+import { Banner } from '@/layout/banner';
 
 export default function Movies() {
     const searchParams = useSearchParams();
@@ -52,48 +53,52 @@ export default function Movies() {
                         <h1 className='text-2xl xl:text-4xl uppercase font-bold text-white pb-10'>Movies Catalog</h1>
                     </div>
                 </section>
-            </main>
 
-            <section className='movies'>
-                <div className='wrapper py-16'>
-                    {search && (
-                        <SearchIntro
-                            length={movies.length}
-                            search={search}
-                        />
-                    )}
+                <section className='movies'>
+                    <div className='wrapper py-16'>
+                        {search && (
+                            <SearchIntro
+                                length={movies.length}
+                                search={search}
+                            />
+                        )}
 
-                    {(movies.length > 0) && !error ? (
-                        <div className=''>
-                            <div className='grid lg:grid-cols-2 xl:grid-cols-3 gap-x-5 lg:gap-x-6 xl:gap-x-8 gap-y-8 xl:gap-y-10'>
-                                {movies.slice(0, visibleCards).map((movie: any) => (
-                                    <AnimatePresence>
-                                        <motion.div
+                        {(movies.length > 0) && !error ? (
+                            <div className=''>
+                                <div className='grid lg:grid-cols-2 xl:grid-cols-3 gap-x-5 lg:gap-x-6 xl:gap-x-8 gap-y-8 xl:gap-y-10'>
+                                    {movies.slice(0, visibleCards).map((movie: any) => (
+                                        <AnimatePresence
                                             key={movie.id}
-                                            initial={{ opacity: 0, y: 50 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                        >
-                                            <MovieCard
-                                                movie={movie}
-                                            />
-                                        </motion.div>
-                                    </AnimatePresence>
-                                ))}
-                            </div>
-
-                            {movies.length > visibleCards && (
-                                <div className='mt-10'>
-                                    <ShowMore
-                                        onClick={handleLoadMore}
-                                    />
+                                            >
+                                            <motion.div
+                                                key={movie.id}
+                                                initial={{ opacity: 0, y: 50 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                            >
+                                                <MovieCard
+                                                    movie={movie}
+                                                />
+                                            </motion.div>
+                                        </AnimatePresence>
+                                    ))}
                                 </div>
-                            )}
-                        </div>
-                    ) : (
-                        <NoResults />
-                    )}
-                </div>
-            </section>
+
+                                {movies.length > visibleCards && (
+                                    <div className='mt-10'>
+                                        <ShowMore
+                                            onClick={handleLoadMore}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <NoResults />
+                        )}
+                    </div>
+                </section>
+
+                <Banner />
+            </main>
         </div>
     )
 }
@@ -117,7 +122,7 @@ const MovieCard = ({
                     />
 
                     <div className='md:hidden bg-foreground-light h-10 w-10 flex items-center justify-center rounded-full cursor-pointer absolute z-10 right-2 top-2'>
-                        <FaArrowUpRightFromSquare  />
+                        <FaArrowUpRightFromSquare />
                     </div>
                 </motion.div>
             </div>

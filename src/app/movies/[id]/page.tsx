@@ -10,6 +10,7 @@ import { MovieInfo } from '@/layout/movie-info';
 import { MovieMedia } from '@/layout/movie-media';
 import { MovieCredits } from '@/layout/movie-credits';
 import { getBackdropImage, getMovieByID, getMovieCredits, getMovieImages, getPosterImage } from '@/lib/tmdb';
+import { Banner } from '@/layout/banner';
 
 const COMPANY_ID = process.env.NEXT_PUBLIC_COMPANY_ID;
 
@@ -99,6 +100,8 @@ export default function Page() {
                     )}
                 </div>
 
+                <Banner />
+                
                 <div className='wrapper'>
                     {movieImages && (
                         <pre className='overflow-x-hidden'>
