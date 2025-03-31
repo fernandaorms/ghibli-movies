@@ -1,8 +1,7 @@
 import { getBackdropImage, getPosterImage } from '@/lib/tmdb';
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
-import { FaXmark } from 'react-icons/fa6';
-import Image from 'next/image';
+import { useState } from 'react';
+import { FaExpand } from 'react-icons/fa6';
 import { Gallery } from '@/components/gallery';
 
 type Props = {
@@ -127,7 +126,7 @@ const ImagesList = ({
     handleOpen: (index: number) => void,
 }) => {
     return (
-        <ol className='flex py-5 gap-2 overflow-x-scroll'>
+        <ol className='flex py-5 gap-3 overflow-x-scroll'>
             {selectedTab.images.map((image: any, index: number) => (
                 <li
                     key={index}
@@ -145,6 +144,10 @@ const ImagesList = ({
                         className='relative bg-foreground-light rounded-xl bg-center bg-cover mx-auto z-10'
                     >
                         <div className='absolute top-0 left 0 h-full w-full opacity-0 md:opacity-35 bg-black hover:opacity-0 rounded-xl transition-opacity'></div>
+
+                        <div className='md:hidden bg-foreground-light h-10 w-10 flex items-center justify-center rounded-full cursor-pointer absolute z-10 right-2 bottom-2'>
+                            <FaExpand />
+                        </div>
                     </motion.div>
                 </li>
             ))}
