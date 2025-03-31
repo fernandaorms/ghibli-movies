@@ -6,7 +6,7 @@ type Props = {
     movieImages: any,
 }
 
-export function MovieGallery(props: Props) {
+export function MovieMedia(props: Props) {
     const backdrops = props.movieImages.backdrops ?? null;
     const posters = props.movieImages.posters ?? null;
 

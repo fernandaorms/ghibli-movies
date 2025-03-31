@@ -15,7 +15,7 @@ import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaAnglesRight } from 'react-icons/fa6';
 import { div } from 'motion/react-client';
-import { MovieGallery } from '@/layout/movie-gallery';
+import { MovieMedia } from '@/layout/movie-media';
 import { MovieCredits } from '@/layout/movie-credits';
 
 const COMPANY_ID = process.env.NEXT_PUBLIC_COMPANY_ID;
@@ -94,9 +94,9 @@ export default function Page() {
                     </div>
                 </section>
 
-                <div className='flex flex-col pt-16 pb-20 gap-16'>
+                <div className='flex flex-col gap-10 md:gap-16 pt-10 md:pt-16 pb-20'>
                     {movieImages && (
-                        <MovieGallery movieImages={movieImages} />
+                        <MovieMedia movieImages={movieImages} />
                     )}
 
                     {(movieImages && movieCredits) && (
