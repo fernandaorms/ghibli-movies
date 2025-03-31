@@ -45,8 +45,8 @@ export default function Movies() {
                 <section
                     id='hero'
                     className='relative pt-32 h-[40vh] xl:h-[50vh]'>
-                    <div className='lg:block hidden background-image bg-fixed' style={{ backgroundImage: 'url(/hero-bg-lg.webp)' }}></div>
-                    <div className='hidden max-lg:block  background-image bg-fixed' style={{ backgroundImage: 'url(/hero-bg-md.webp)' }}></div>
+                    <div className='lg:block hidden background-image bg-fixed' style={{ backgroundImage: 'url(/hero-bg-cat-lg.webp)' }}></div>
+                    <div className='hidden max-lg:block  background-image cat-fixed' style={{ backgroundImage: 'url(/hero-bg-cat-md.webp)' }}></div>
 
                     <div className='relative wrapper h-full text-center flex items-center justify-center'>
                         <h1 className='text-2xl xl:text-4xl uppercase font-bold text-white pb-10'>Movies Catalog</h1>
