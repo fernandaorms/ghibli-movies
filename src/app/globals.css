@@ -2,13 +2,15 @@
 
 :root {
     --background: #ffffff;
+    --footer-background: #e0e0e0;
     --foreground: #171717;
+    --footer-foreground: rgba(23, 23, 23, 0.75);
     --foreground-light: rgba(23, 23, 23, 0.075);
     --content: #555555;
     --border: #dadada;
     --dark-md: #eeeeee;
     --white-20: rgba(255, 255, 255, 0.20);
-    
+
     --neutral-light: #ededed;
     --primary: #1990C6;
     --primary-md: #38527B;
@@ -22,7 +24,9 @@
 [data-theme='dark'] {
     /* --background: #0a0a0a; */
     --background: #1f1f1f;
+    --footer-background: #3b3b3b;
     --foreground: #ededed;
+    --footer-foreground: rgba(237, 237, 237, 0.85);
     --foreground-light: rgba(237, 237, 237, 0.175);
     --content: rgba(255, 255, 255, 0.75);
     --border: #52525B;
@@ -32,7 +36,9 @@
 
 @theme inline {
     --color-background: var(--background);
+    --color-footer-background: var(--footer-background);
     --color-foreground: var(--foreground);
+    --color-footer-foreground: var(--footer-foreground);
     --color-foreground-light: var(--foreground-light);
     --color-content: var(--content);
     --color-border: var(--border);
