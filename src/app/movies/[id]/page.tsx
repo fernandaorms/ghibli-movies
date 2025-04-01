@@ -12,6 +12,7 @@ import { MovieCredits } from '@/layout/movie-credits';
 import { Banner } from '@/layout/banner';
 import { MovieReviews } from '@/layout/movie-reviews';
 import { getBackdropImage, getMovieByID, getMovieCredits, getMovieImages, getMovieReviews, getPosterImage } from '@/lib/tmdb';
+import { Footer } from '@/layout/footer';
 
 const COMPANY_ID = process.env.NEXT_PUBLIC_COMPANY_ID;
 
@@ -72,7 +73,10 @@ export default function Page() {
             <Header />
 
             <main>
-                <section className='hero relative pt-32 min-h-[75vh] lg:min-h-[75vh]'>
+                <section
+                    id='hero'
+                    className='hero relative pt-32 min-h-[75vh] lg:min-h-[75vh]'
+                >
                     <div className='background-image backdrop' style={{ backgroundImage: `url(${getBackdropImage(movie.backdrop_path)})` }}></div>
 
                     <div className='relative wrapper grid grid-cols-[1fr] lg:grid-cols-[auto_1fr] gap-12 pt-8 pb-16'>
@@ -114,6 +118,8 @@ export default function Page() {
 
                 <Banner />
             </main>
+
+            <Footer />
         </div>
     )
 }

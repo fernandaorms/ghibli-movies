@@ -10,6 +10,7 @@ import { Loading } from '@/components/loading';
 import { Header } from '@/layout/header';
 import { getAllMovies, getBackdropImage } from '@/lib/tmdb';
 import { Banner } from '@/layout/banner';
+import { Footer } from '@/layout/footer';
 
 export default function Movies() {
     const searchParams = useSearchParams();
@@ -45,7 +46,8 @@ export default function Movies() {
             <main>
                 <section
                     id='hero'
-                    className='relative pt-32 h-[40vh] xl:h-[50vh]'>
+                    className='relative pt-32 h-[40vh] xl:h-[50vh]'
+                >
                     <div className='lg:block hidden background-image bg-fixed' style={{ backgroundImage: 'url(/hero-bg-cat-lg.webp)' }}></div>
                     <div className='hidden max-lg:block  background-image cat-fixed' style={{ backgroundImage: 'url(/hero-bg-cat-md.webp)' }}></div>
 
@@ -69,7 +71,7 @@ export default function Movies() {
                                     {movies.slice(0, visibleCards).map((movie: any) => (
                                         <AnimatePresence
                                             key={movie.id}
-                                            >
+                                        >
                                             <motion.div
                                                 key={movie.id}
                                                 initial={{ opacity: 0, y: 50 }}
@@ -99,6 +101,8 @@ export default function Movies() {
 
                 <Banner />
             </main>
+
+            <Footer />
         </div>
     )
 }
