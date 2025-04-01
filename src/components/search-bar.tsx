@@ -1,5 +1,8 @@
+'use client';
+
 import { AnimatePresence, motion } from 'motion/react';
-import { FaArrowRotateLeft, FaMagnifyingGlass, FaRegTrashCan } from 'react-icons/fa6';
+import { FaArrowRotateLeft, FaMagnifyingGlass } from 'react-icons/fa6';
+import { useRouter } from 'next/navigation';
 
 type Props = {
     inputValue: string,
@@ -10,7 +13,14 @@ type Props = {
     clearSearchBar: () => void,
 }
 
-export function SearchBar({inputValue, scrolled,  isSearchOpen, onSubmit, onChange, clearSearchBar}: Props) {
+export function SearchBar({ inputValue, scrolled, isSearchOpen, onSubmit, onChange, clearSearchBar }: Props) {
+    const router = useRouter();
+
+    const onClickSubmit = () => {
+        clearSearchBar();
+        router.push(`/movies?search=${inputValue.trim()}`);
+    }
+
     return (
         <AnimatePresence initial={false}>
             {isSearchOpen ? (
@@ -25,12 +35,15 @@ export function SearchBar({inputValue, scrolled,  isSearchOpen, onSubmit, onChan
                         className='relative grid items-center gap-4 bg-background text-foreground rounded-full h-[56px]'
                     >
                         <div className='absolute left-4 w-[16px] pr-6 border-r-2 border-foreground-light'>
-                            <FaMagnifyingGlass />
+                            <FaMagnifyingGlass
+                                className='cursor-pointer'
+                                onClick={onClickSubmit}
+                            />
                         </div>
 
                         <input
                             type='text'
-                            placeholder='Serach at Ghibli Movies...'
+                            placeholder='Type and press Enter (↵)'
                             value={inputValue}
                             onChange={(e) => onChange(e)}
                             className='w-full h-[100%] block rounded-full pl-13 pr-8 border-2 border-foreground-light focus:border-primary focus:outline-none'

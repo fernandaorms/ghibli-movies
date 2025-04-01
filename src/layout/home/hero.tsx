@@ -75,7 +75,7 @@ export function Hero() {
                         >
                             <input
                                 type='text'
-                                placeholder='Serach at Ghibli Movies...'
+                                placeholder='Search at Ghibli Movies...'
                                 value={inputValue}
                                 onChange={(e) => handleChange(e)}
                                 className='placeholder-white-75 w-full h-[100%] block rounded-full pl-5 md:pl-6 pr-[60px] md:pr-[128px] border-2 border-foreground-light focus:border-primary focus:outline-none'

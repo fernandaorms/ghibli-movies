@@ -46,7 +46,7 @@ export function Header() {
     const searchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        clearSearchBar()
+        clearSearchBar();
         router.push(`/movies?search=${searchBarValue.trim()}`);
     }
 
