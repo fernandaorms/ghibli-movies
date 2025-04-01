@@ -8,12 +8,13 @@
     --border: #dadada;
     --dark-md: #eeeeee;
     --white-20: rgba(255, 255, 255, 0.20);
-
+    
     --neutral-light: #ededed;
     --primary: #1990C6;
     --primary-md: #38527B;
     --primary-sm: #586e8f;
     --white: #FFF;
+    --white-75: rgba(255, 255, 255, 0.75);
     --semi-transparent: rgba(237, 237, 237, 0.175);
     --dark: rgba(31, 31, 31, 0.85);
 }
