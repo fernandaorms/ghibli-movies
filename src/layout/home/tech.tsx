@@ -50,7 +50,7 @@ export function Tech() {
 
                     <div className='flex items-center justify-center gap-4 flex-wrap font-medium mt-6 xl:mt-10'>
                         <div className='flex items-center gap-2 bg-foreground-light py-3 px-3 rounded-xl'>
-                            <span>Next JSn</span>
+                            <span>Next JS</span>
                             <RiNextjsLine className='text-xl' />
                         </div>
 
