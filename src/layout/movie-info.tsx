@@ -45,7 +45,7 @@ export function MovieInfo({ movie, movieDirector }: Props) {
                 </div>
 
                 <div className='flex items-center h-9 px-3 rounded-full gap-2 bg-semi-transparent '>
-                    <span>{movie.vote_count.toLocaleString()} votes</span>
+                    <span>{movie.vote_count.toLocaleString('en-US')} votes</span>
                 </div>
             </div>
 
