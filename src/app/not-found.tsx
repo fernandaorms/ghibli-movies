@@ -39,7 +39,7 @@ export default function NotFound() {
                                 </Link>
 
                                 <Link
-                                    href={'/movies'}
+                                    href={'/'}
                                     className='flex h-[48px] items-center bg-transparent text-primary-md hover:text-primary border-2 border-primary-md hover:border-primary transition-colors px-5 rounded-full cursor-pointer'
                                 >
                                     Homepage

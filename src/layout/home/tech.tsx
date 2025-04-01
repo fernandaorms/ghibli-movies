@@ -2,6 +2,7 @@
 
 import { once } from 'events';
 import { motion, useAnimation, useInView } from 'motion/react';
+import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { RiNextjsLine, RiTailwindCssLine } from 'react-icons/ri';
 
@@ -36,7 +37,15 @@ export function Tech() {
                     <div className='max-w-[675px] mx-auto text-center'>
                         <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold mb-2 lg:mb-4 xl:mb-6'>Technologies</h2>
 
-                        <p className='text-content'>This project uses the TMDB API for the movie catalog and was built with:</p>
+                        <p className='text-content'>This project uses the {' '}
+                            <Link
+                                href='https://developer.themoviedb.org/docs/getting-started'
+                                target='_blank'
+                                className='font-medium underline hover:text-foreground transition-colors'
+                            >
+                                TMDB API
+                            </Link>
+                            {' '} for the movie catalog and was built with:</p>
                     </div>
 
                     <div className='flex items-center justify-center gap-4 flex-wrap font-medium mt-6 xl:mt-6'>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView, useMotionTemplate, useMotionValue, useSpring } from 'motion/react';
+import Link from 'next/link';
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = 32.5 / 2;
@@ -71,7 +72,17 @@ export function Start() {
                         <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold mb-2 lg:mb-4 xl:mb-6 text-white'>How it Started</h2>
 
                         <div className='text-white-75'>
-                            <p>In 2021, I began my journey in web development by creating Ghibli Flix, a Studio Ghibli movie catalog. The goal was to replicate two Netflix pages using only HTML, CSS, and JavaScript.</p>
+                            <p>
+                                In 2021, I began my journey in web development by creating {' '}
+                                <Link
+                                    href='https://fernandaorms.github.io/netflix-clone/home.html'
+                                    target='_blank'
+                                    className='font-medium underline hover:text-white transition-colors'
+                                >
+                                    Ghibli Flix
+                                </Link>
+                                , a Studio Ghibli movie catalog. The goal was to replicate two Netflix pages using only HTML, CSS, and JavaScript.
+                            </p>
                             <p className='mt-6'>At that stage, the site was purely visual, displaying a static, limited catalog with data from localhost and no interactive features.</p>
                         </div>
                     </div>
