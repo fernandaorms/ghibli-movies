@@ -21,7 +21,7 @@ export function Tech() {
     return (
         <section
             id='tech'
-            className='h-fit min-h-[50vh] max-h-[720px] py-12 lg:py-20 xl:py-28'
+            className='h-fit min-h-[50vh] max-h-[720px] py-12 lg:py-20 xl:py-28 flex items-center justify-center'
         >
             <div className='wrapper'>
                 <motion.div
@@ -48,7 +48,7 @@ export function Tech() {
                             {' '} for the movie catalog and was built with:</p>
                     </div>
 
-                    <div className='flex items-center justify-center gap-4 flex-wrap font-medium mt-6 xl:mt-6'>
+                    <div className='flex items-center justify-center gap-4 flex-wrap font-medium mt-6 xl:mt-10'>
                         <div className='flex items-center gap-2 bg-foreground-light py-3 px-3 rounded-xl'>
                             <span>Next JSn</span>
                             <RiNextjsLine className='text-xl' />

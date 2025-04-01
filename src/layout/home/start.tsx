@@ -54,7 +54,7 @@ export function Start() {
     return (
         <section
             id='start'
-            className='h-fit min-h-[50vh] max-h-[720px] py-12 lg:py-20 xl:py-28 bg-primary-md text-white-75'
+            className='h-fit min-h-[65vh] py-12 lg:py-20 xl:py-28 bg-primary-md text-white-75 flex items-center justify-center'
         >
             <div className='wrapper'>
                 <motion.div
