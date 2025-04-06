@@ -41,7 +41,7 @@ const SocialNav = () => {
                 whileHover={{ scale: 1.15 }}
             >
                 <Link
-                    href={'https://github.com/fernandaorms'}
+                    href={'https://github.com/fernandaorms/ghibli-movies'}
                     className='absolute h-full w-full rounded-full'
                     target='_blank'
                 />
