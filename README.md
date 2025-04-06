@@ -2,7 +2,7 @@
 
 A Studio Ghibli movie catalog built with [Next.js](https://nextjs.org), featuring search, movie details, cast, galleries, and more.
 
-![Ghibli Flix Banner](https://github.com/fernandaorms/ghibli-movies/tree/main/public/featured-image.png)
+<img src="https://raw.githubusercontent.com/fernandaorms/ghibli-movies/main/public/featured-image.png" alt="Ghibli Flix Banner" width="520"/>
 
 ## 🚀 Live Demo
 
